@@ -1,18 +1,16 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.Playables;
 
+[RequireComponent(typeof(Collider))]
 public class CutSceneTrigger : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField] PlayableDirector director;
 
-    // Update is called once per frame
-    void Update()
+    private void OnTriggerEnter (Collider col)
     {
-        
+        if(col.tag == Constants.TAG_PLAYER && director)
+        {
+            director.Play();
+        }
     }
 }
